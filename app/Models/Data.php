@@ -27,4 +27,10 @@
             $database->where('id',$id);
             return $database->update();
         }
+
+        public function eliminar($data){
+            $database = $this->db->table('historialuf');
+            $database->where($data);
+            return $database->delete();
+        }
     }

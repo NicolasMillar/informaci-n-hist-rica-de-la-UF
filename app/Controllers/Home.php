@@ -64,6 +64,13 @@ class Home extends BaseController{
     }
 
     public function eliminar($id){
-
+        $database = new Data();
+        $data = ["id" => $id];
+        $respuesta = $database->eliminar($data);
+        if($respuesta){
+            return redirect()->to(base_url().'/')->with('mensaje', 4);
+        }else{
+            return redirect()->to(base_url().'/')->with('mensaje', 5);
+        }
     }
 }

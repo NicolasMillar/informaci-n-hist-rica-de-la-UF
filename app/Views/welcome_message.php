@@ -63,7 +63,7 @@
                             <td><?php echo $key->tiempoIndicador ?></td>
                             <td><?php echo $key->origenIndicador ?></td>
                             <td><a href="<?php echo base_url().'/obtenerid/'.$key->id ?>" class="btn btn-warning btn-sm">Editar</a></td>
-                            <td><a href="" class="btn btn-danger btn-sm">Eliminar</a></td>
+                            <td><a href="<?php echo base_url().'/eliminar/'.$key->id ?>" class="btn btn-danger btn-sm">Eliminar</a></td>
                         </tr>
                     <?php endforeach; ?>
                     </table>
@@ -88,6 +88,10 @@
             swal(':D','Se actualizo de forma correcta','succes'); 
         }else if(mensaje == '3'){
             swal(':C','Fallo al actualizar','error'); 
+        }else if(mensaje == '4'){
+            swal(':D','Eliminado con exito','success'); 
+        }else if(mensaje == '5'){
+            swal(':C','Fallo al eliminar','error'); 
         }
 
     </script>

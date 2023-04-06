@@ -14,11 +14,11 @@ More information about the plans for version 4 can be found in [CodeIgniter 4](h
 The user guide corresponding to the latest version of the framework can be found
 [here](https://codeigniter4.github.io/userguide/).
 
-##setup
+## setup
 
 primero debe ejecutarse el comando "php spark migrate HistorialUf" para asegurarse de que la base de datos tenga la tabla usada en el proyecto, luego debe ejecutarse el
 comando "php spark db:seed HistorialUfSeed" para que la base de datos quede poblada.
 
 
-##Acerca del proyecto:
+## Acerca del proyecto:
 Este proyecto se desarrolló con el framework CodeIgniter y se utilizó el motor de base de datos MySQL.

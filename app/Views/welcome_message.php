@@ -16,11 +16,18 @@
   <body>
     
     <div class="container">
+        <!--Grafico de Uf -->
         <button class="btn btn-info"  id="miBoton">Ver/Ocultar Grafico</button>
         <div id="miDiv" style="display: none;">
+            <label for="start_date">Fecha de inicio:</label>
+            <input type="date" id="start_date">
+            <label for="end_date">Fecha de término:</label>
+            <input type="date" id="end_date">
             <canvas id="myChart"></canvas>
         </div>
-        <hr>    
+        <hr>
+        
+        <!--Agregado nuevos datos -->
         <h1>Crud Historial Uf</h1>
         <div class="row">
             <div class="col-sm-12">
@@ -45,6 +52,7 @@
             </div>
         </div>
         <hr>
+        <!--Listado historio del Uf -->
         <h2>Listado Historico del Uf</h2>
         <div class="row">
             <div class="col-sm-12">
@@ -87,6 +95,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
 
+        //mensajes de respuesta al crud
         let mensaje = '<?php echo $mensaje ?>';
         if(mensaje == '1'){
             swal(':D','Agregado con exito','success'); 
@@ -102,7 +111,7 @@
             swal(':C','Fallo al eliminar','error'); 
         }
 
-
+        //permite ocultar y mostrar el grafico
         document.getElementById('miBoton').addEventListener('click', function() {
             var miDiv = document.getElementById('miDiv');
             if (miDiv.style.display === 'none') {
@@ -110,13 +119,16 @@
             } else {
                 miDiv.style.display = 'none';
             }
-        });
+        }); 
 
-        const ctx = document.getElementById('myChart');
+        //datos iniciales para el grafico
         var array_js = <?php echo $json; ?>;
         const fechas = array_js.map(d => d.fechaIndicador);
         const valores = array_js.map(d => d.valorIndicador);
-        new Chart(ctx, {
+
+        //renderiza el gradico
+        const ctx = document.getElementById('myChart');
+        var chart = new Chart(ctx, {
             type: 'line',
             data: {
             labels: fechas,
@@ -138,6 +150,30 @@
             }
             }
         });
+
+        //para filtrar por fecha
+        var start_date = document.getElementById('start_date');
+        var end_date = document.getElementById('end_date');
+        start_date.addEventListener('change', filterData);
+        end_date.addEventListener('change', filterData);
+        
+        function filterData(){
+            var startDate = start_date.value;
+            var endDate = end_date.value;
+            var filteredData = [];
+            var filteredLabels = [];
+            for(var i=0; i<fechas.length;i++){
+                if(fechas[i] >= startDate && fechas[i] <= endDate){
+                    filteredData.push(valores[i]);
+                    filteredLabels.push(fechas[i]);
+                }
+            }
+            if(filteredData != undefined){
+                chart.data.datasets[0].data = filteredData;
+                chart.data.labels = filteredLabels;
+                chart.update();
+            }
+        }
     </script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--

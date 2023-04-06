@@ -53,6 +53,19 @@
                             <th>Editar</th>
                             <th>Eliminar</th>
                         </tr>
+                    <?php foreach($datos as $key): ?>
+                        <tr>
+                            <th><?php echo $key->nombreIndicador ?></th>
+                            <th><?php echo $key->codigoIndicador ?></th>
+                            <th><?php echo $key->unidadMedidaIndicador ?></th>
+                            <th><?php echo $key->valorIndicador ?></th>
+                            <th><?php echo $key->fechaIndicador ?></th>
+                            <th><?php echo $key->tiempoIndicador ?></th>
+                            <th><?php echo $key->origenIndicador ?></th>
+                            <th><a href="" class="btn btn-warning btn-sm">Editar</a></th>
+                            <th><a href="" class="btn btn-danger btn-sm">Eliminar</a></th>
+                        </tr>
+                    <?php endforeach; ?>
                     </table>
                 </div>
             </div>

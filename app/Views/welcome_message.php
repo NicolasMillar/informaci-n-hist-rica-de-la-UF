@@ -55,15 +55,15 @@
                         </tr>
                     <?php foreach($datos as $key): ?>
                         <tr>
-                            <th><?php echo $key->nombreIndicador ?></th>
-                            <th><?php echo $key->codigoIndicador ?></th>
-                            <th><?php echo $key->unidadMedidaIndicador ?></th>
-                            <th><?php echo $key->valorIndicador ?></th>
-                            <th><?php echo $key->fechaIndicador ?></th>
-                            <th><?php echo $key->tiempoIndicador ?></th>
-                            <th><?php echo $key->origenIndicador ?></th>
-                            <th><a href="<?php echo base_url().'/Obtenerid/$key->id' ?>" class="btn btn-warning btn-sm">Editar</a></th>
-                            <th><a href="" class="btn btn-danger btn-sm">Eliminar</a></th>
+                            <td><?php echo $key->nombreIndicador ?></td>
+                            <td><?php echo $key->codigoIndicador ?></td>
+                            <td><?php echo $key->unidadMedidaIndicador ?></td>
+                            <td><?php echo $key->valorIndicador ?></td>
+                            <td><?php echo $key->fechaIndicador ?></td>
+                            <td><?php echo $key->tiempoIndicador ?></td>
+                            <td><?php echo $key->origenIndicador ?></td>
+                            <td><a href="<?php echo base_url().'/obtenerid/'.$key->id ?>" class="btn btn-warning btn-sm">Editar</a></td>
+                            <td><a href="" class="btn btn-danger btn-sm">Eliminar</a></td>
                         </tr>
                     <?php endforeach; ?>
                     </table>
@@ -81,10 +81,15 @@
 
         let mensaje = '<?php echo $mensaje ?>';
         if(mensaje == '1'){
-            swall(':D','Agregado con exito','success'); 
+            swal(':D','Agregado con exito','success'); 
         }else if(mensaje == '0'){
-            swall(':C','Fallo al agregar','error'); 
+            swal(':C','Fallo al agregar','error'); 
+        }else if(mensaje == '2'){
+            swal(':D','Se actualizo de forma correcta','succes'); 
+        }else if(mensaje == '3'){
+            swal(':C','Fallo al actualizar','error'); 
         }
+
     </script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--

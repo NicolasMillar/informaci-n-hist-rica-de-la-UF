@@ -29,18 +29,38 @@ class Home extends BaseController{
         $database = new Data();
         $respuesta = $database->insertar($datos);
         if($respuesta > 0){
-            return redirect()->to(base_url().'/')->whith('mensaje', 1);
+            return redirect()->to(base_url().'/')->with('mensaje', 1);
         }else{
-            return redirect()->to(base_url().'/')->whith('mensaje', 0);
+            return redirect()->to(base_url().'/')->with('mensaje', 0);
         }
     }
 
     public function actualizar(){
-
+        $datos = [
+            "nombreIndicador" => $_POST['nombreIndicador'],
+            "codigoIndicador" => $_POST['codigoIndicador'],
+            "unidadMedidaIndicador" => $_POST['unidadMedidaIndicador'],
+            "valorIndicador" => $_POST['valorIndicador'],
+            "fechaIndicador" => $_POST['fechaIndicador'],
+            "tiempoIndicador" => $_POST['tiempoIndicador'], 
+            "origenIndicador" => $_POST['origenIndicador']
+        ];
+        $id = $_POST['id'];
+        $database = new Data();
+        $respuesta = $database->actualizar($datos,$id);
+        if($respuesta){
+            return redirect()->to(base_url().'/')->with('mensaje', 2);
+        }else{
+            return redirect()->to(base_url().'/')->with('mensaje', 3);
+        }
     }
 
     public function Obtenerid($id){
-
+        $data = ["id" => $id];
+        $database = new Data();
+        $respuesta = $database->obtenerDatos($data);
+        $datos = ["datos" => $respuesta];
+        return view('actualizar', $datos);
     }
 
     public function eliminar($id){

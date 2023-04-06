@@ -14,4 +14,17 @@
             $database->insert($datos);
             return  $this->db->insertID();
         }
+
+        public function obtenerDatos($data){
+            $database = $this->db->table('historialuf');
+            $database->where($data);
+            return $database->get()->getResultArray();
+        }
+
+        public function actualizar($data, $id){
+            $database = $this->db->table('historialuf');
+            $database->set($data);
+            $database->where('id',$id);
+            return $database->update();
+        }
     }

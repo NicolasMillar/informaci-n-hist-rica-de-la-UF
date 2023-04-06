@@ -8,4 +8,10 @@
             $Datos = $this->db->query("SELECT * from historialuf");
             return $Datos->getResult();
         }
+
+        public function insertar($datos){
+            $database = $this->db->table('historialuf');
+            $database->insert($datos);
+            return  $this->db->insertID();
+        }
     }

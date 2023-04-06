@@ -1,3 +1,6 @@
+<?php 
+    $json = json_encode($datos);
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,12 +10,17 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Crud Historial uf</title>
   </head>
   <body>
     
     <div class="container">
+        <button class="btn btn-info"  id="miBoton">Ver/Ocultar Grafico</button>
+        <div id="miDiv" style="display: none;">
+            <canvas id="myChart"></canvas>
+        </div>
+        <hr>    
         <h1>Crud Historial Uf</h1>
         <div class="row">
             <div class="col-sm-12">
@@ -94,6 +102,42 @@
             swal(':C','Fallo al eliminar','error'); 
         }
 
+
+        document.getElementById('miBoton').addEventListener('click', function() {
+            var miDiv = document.getElementById('miDiv');
+            if (miDiv.style.display === 'none') {
+                miDiv.style.display = 'block';
+            } else {
+                miDiv.style.display = 'none';
+            }
+        });
+
+        const ctx = document.getElementById('myChart');
+        var array_js = <?php echo $json; ?>;
+        const fechas = array_js.map(d => d.fechaIndicador);
+        const valores = array_js.map(d => d.valorIndicador);
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+            labels: fechas,
+            datasets: [{
+                label: 'Valor del Indicador',
+                data: valores,
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderWidth: 1
+            }]
+            },
+            options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                    beginAtZero: true
+                    }
+                }]
+            }
+            }
+        });
     </script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--

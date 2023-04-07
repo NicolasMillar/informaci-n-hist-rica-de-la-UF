@@ -16,8 +16,9 @@ The user guide corresponding to the latest version of the framework can be found
 
 ## setup
 
-primero debe ejecutarse el comando "php spark migrate HistorialUf" para asegurarse de que la base de datos tenga la tabla usada en el proyecto, luego debe ejecutarse el
-comando "php spark db:seed HistorialUfSeed" para que la base de datos quede poblada.
+Primero debe ejecutarse el comando "composer require codeigniter4/framework" para la instalacion de todas las depedendencias, luego se debe ejecutar el comando de
+"php spark migrate HistorialUf" para asegurarse de que la base de datos tenga la tabla usada en el proyecto, luego debe ejecutarse el comando 
+"php spark db:seed HistorialUfSeed" para que la base de datos quede poblada.
 
 
 ## Acerca del proyecto:
